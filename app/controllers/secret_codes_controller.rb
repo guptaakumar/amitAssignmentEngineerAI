@@ -1,5 +1,5 @@
 class SecretCodesController < ApplicationController
-  before_action :authenticate_user!
+  load_and_authorize_resource
   def index
     @secret_codes = SecretCode.all
   end
@@ -11,13 +11,8 @@ class SecretCodesController < ApplicationController
   def create
     params[:num_of_code].to_i.times do |secret_code|
       @secret_code = SecretCode.new
-      @secret_code.save!
+      @secret_code.save
     end
-      # flash[:success] = "Secret code has been saved."
     redirect_to secret_codes_path
-    # else
-    #   flash[:alert] = @secret_code.errors.full_messages.to_sentence
-    #   render 'new'
-    # end
   end
 end

@@ -12,6 +12,9 @@
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
+    <% if current_user %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

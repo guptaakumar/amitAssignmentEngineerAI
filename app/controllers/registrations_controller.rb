@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
     @secret_code = SecretCode.find_by(code: params[:secret_key])
     if @secret_code.present?
       if @user.save
-        @secret_code.update(user: @user)
+        @secret_code.update_column("user_id", @user.id)
         respond_to do |format|
           format.html do
             redirect_to new_user_session_path

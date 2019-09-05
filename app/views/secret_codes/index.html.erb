@@ -1,10 +1,5 @@
-<% if current_user %>
-  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-<% end %>
 <h2>Secret Codes</h2>
-<%# if can? :new, @secret_code %>
-  <%= button_to "Generate More Secret Code", new_secret_code_path, method: :get %>
-<%# end %>
+<%= button_to "Generate More Secret Code", new_secret_code_path, method: :get %>
 <% if @secret_codes.present? %>
   <table>
     <tr>
@@ -23,6 +18,7 @@
         <td>
           <%= secret_code&.user&.email %>
         </td>
+      </tr>
     <% end %>
   </table>
 <% end %>
